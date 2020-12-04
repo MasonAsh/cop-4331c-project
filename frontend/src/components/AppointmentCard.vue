@@ -36,9 +36,9 @@ export default {
     prettyDateTime: (date) => {
       let d = new Date(date);
       return (
-        d.getMonth() +
+        (d.getMonth() + 1).toString() +
         "/" +
-        d.getDay() +
+        d.getDate() +
         " at " +
         d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       );

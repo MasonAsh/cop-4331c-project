@@ -133,24 +133,29 @@ export default {
 
     // Just fetch all of the appointments for the time being.
     // As the app scales this will need to be adjusted to be a date range.
-    get("/list_appointments").then((response) => {
-      this.loading = false;
-      try {
-        if (
-          response.data === "Unauthorized" ||
-          !response.data.success ||
-          response.data.appointments == null
-        ) {
+    get("/list_appointments")
+      .then((response) => {
+        this.loading = false;
+        try {
+          console.log(response.data);
+          if (
+            response.data === "Unauthorized" ||
+            !response.data.success ||
+            response.data.appointments == null
+          ) {
+            this.$router.push("/admin/login");
+            return;
+          }
+        } catch {
           this.$router.push("/admin/login");
           return;
         }
-      } catch {
+        this.appointments = response.data.appointments;
+        console.log(this.appointments);
+      })
+      .catch(() => {
         this.$router.push("/admin/login");
-        return;
-      }
-      this.appointments = response.data.appointments;
-      console.log(this.appointments);
-    });
+      });
   },
   methods: {
     logout() {
@@ -243,7 +248,7 @@ export default {
   filters: {
     prettyDate(date) {
       let d = new Date(date);
-      return d.getMonth() + "/" + d.getDate();
+      return (d.getMonth() + 1).toString() + "/" + d.getDate();
     },
   },
   watch: {

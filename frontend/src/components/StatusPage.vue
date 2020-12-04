@@ -8,39 +8,39 @@
       <md-card-content>
         <div v-if="appointment">
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Customer Name:</div>
+            <div class="md-layout-item fieldname">Customer Name:</div>
             <div class="md-layout-item">{{ appointment.customerName }}</div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Customer Email:</div>
+            <div class="md-layout-item fieldname">Customer Email:</div>
             <div class="md-layout-item">{{ appointment.customerEmail }}</div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Customer Phone:</div>
+            <div class="md-layout-item fieldname">Customer Phone:</div>
             <div class="md-layout-item">{{ appointment.customerPhone }}</div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Subject:</div>
+            <div class="md-layout-item fieldname">Subject:</div>
             <div class="md-layout-item">{{ appointment.subject }}</div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Date:</div>
+            <div class="md-layout-item fieldname">Date:</div>
             <div class="md-layout-item">
               {{ appointment.datetime | prettyDateTime }}
             </div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Duration (minutes):</div>
+            <div class="md-layout-item fieldname">Duration (minutes):</div>
             <div class="md-layout-item">{{ appointment.duration }}</div>
           </div>
           <div class="md-layout md-size-25 md-alignment-top-left">
-            <div class="md-layout-item">Status:</div>
+            <div class="md-layout-item fieldname">Status:</div>
             <div class="md-layout-item">
               {{ appointment.canceled ? "Canceled" : "Active" }}
             </div>
           </div>
           <template v-if="appointment.notes">
-            <div class="md-layout-item">Notes:</div>
+            <div class="md-layout-item fieldname">Notes:</div>
             <span>{{ appointment.notes }}</span>
           </template>
         </div>
@@ -123,7 +123,7 @@ export default {
       let d = new Date(date);
       console.log(date);
       return (
-        d.getMonth() +
+        (d.getMonth() + 1).toString() +
         "/" +
         d.getDate() +
         "/" +
@@ -141,5 +141,18 @@ export default {
   justify-content: center;
   display: flex;
   margin-top: 60px;
+}
+
+div > .md-layout-item {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.md-title {
+  text-align: center;
+}
+
+.fieldname {
+  font-weight: bold;
 }
 </style>

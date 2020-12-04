@@ -242,10 +242,11 @@ export default {
       axios
         .post(settings.apiEndpoint + "/create_appointment", {
           name: this.form.fullName,
-          email: this.form.fullName,
+          email: this.form.email,
           phone: this.form.phone,
           subject: this.form.subject,
           duration: this.form.duration,
+          notes: this.form.notes,
           date: datetime,
         })
         .then((response) => {
